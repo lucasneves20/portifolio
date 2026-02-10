@@ -1,83 +1,65 @@
 ---
-import { Image } from "astro:assets";
-import MyImageLucas from "../../assets/MyImageLucasZeroBg.png";
+import Image from "astro:assets";
+import BadgeStack from "./BadgeStack.astro";
+
+const myStack = [
+  { title: "Front-end", tags: ["React", "Vue", "NextJS", "Astro"] },
+  { title: "UI", tags: ["Tailwind", "Shadcn"] },
+  { title: "Back-end", tags: ["Bun", "Node", "Fastify"] },
+  { title: "ORM", tags: ["Prisma", "Drizzle"] },
+  { title: "Database", tags: ["SQlite", "PostgreSQL"] },
+  { title: "Infra", tags: ["Vercel", "Docker"] },
+];
 ---
 
-<div class="container">
-  <div class="title-hero">
-    <h1>Lucas Neves Moreira Sampaio</h1>
+<div
+  class="relative min-h-screen flex flex-col md:flex-row items-center justify-center max-w-7xl mx-auto px-6 py-12 md:py-0 overflow-hidden lg:overflow-visible"
+>
+  <div
+    class="order-2 md:order-1 flex-1 flex flex-col items-center md:items-start text-center md:text-left z-10 w-full"
+  >
+    <h1
+      class="text-3xl sm:text-4xl lg:text-6xl font-black text-white leading-[1.1] tracking-tighter"
+    >
+      Lucas Neves <br />
+      <span class="text-orange-500 italic">Moreira Sampaio</span>
+    </h1>
 
-    <div class="description-hero">
-      <h2>Dev Fullstack</h2>
+    <div class="mt-6 md:mt-8 w-full max-w-2xl">
+      <h2
+        class="text-lg uppercase tracking-[0.2em] text-zinc-500 font-bold mb-6"
+      >
+        Dev Fullstack
+      </h2>
 
-      <p>Front-end: React - Vue - NextJS - NuxtJS</p>
-      <p>UI: TailwindCSS - Shadcn/UI</p>
-      <p>Back-end: Bun - NodeJS - Fastify - Bun Vanilla</p>
-      <p>ORM: Prisma - Drizzle - Driver Vanilla</p>
-      <p>Database: SQlite - PostgreSQL - MySQL</p>
-      <p>Infra: <strong>Sua escolha</strong></p>
+      <div
+        class="flex flex-wrap justify-center md:justify-start gap-3 md:gap-4"
+      >
+        {
+          myStack.map((item) => (
+            <div class="flex-1 min-w-50 bg-zinc-900/50 p-4 rounded-xl border border-zinc-800 hover:border-orange-500/50 transition-colors">
+              <BadgeStack stack={item.tags}>{item.title}</BadgeStack>
+            </div>
+          ))
+        }
+      </div>
     </div>
   </div>
 
-  <div class="img-size">
-    <Image
-      src={MyImageLucas}
-      alt="Eu mesmo"
-      class="png-shadow img-size"
-      width={70 * 16}
-      inferSize
+  <div
+    class="order-1 md:order-2 flex-1 relative mb-10 md:mb-0 flex justify-center items-center w-full"
+  >
+    <div
+      class="absolute w-62.5 h-62.5 md:w-112.5 md:h-112.5 bg-orange-600/20 rounded-full blur-[60px] md:blur-[100px] animate-pulse"
+    >
+    </div>
+
+    <img
+      src=""
+      alt="Lucas Sampaio"
+      class="relative w-70 sm:w-87.5 md:w-125 lg:w-162.5 h-auto drop-shadow-[10px_10px_30px_rgba(249,115,22,0.3)] transition-all duration-500 hover:scale-[1.02] bg-[url(../../assets/MyImageLucasZeroBg.png)]"
+      loading="eager"
+      decoding="async"
     />
   </div>
 </div>
-
-<style>
-  div {
-    border: solid 0px #fff;
-  }
-
-  .title-hero {
-    gap: 4px;
-  }
-
-  .description-hero {
-    display: flex;
-    flex-direction: column;
-
-    margin: 0.5rem;
-    padding: 1rem;
-
-    text-align: center;
-  }
-
-  .description-hero p {
-    margin: 0.5rem 0;
-
-    color: #fff8;
-  }
-
-  div {
-    margin: 0 4rem;
-  }
-
-  h1 {
-    margin-bottom: 4rem;
-  }
-
-  .container {
-    display: flex;
-    align-items: center;
-    margin-top: 1rem;
-
-    overflow: hidden;
-  }
-
-  .png-shadow {
-    /* Ordem de pintura: Borda primeiro, Sombra depois */
-    filter: 
-    /* Camada 1: Borda Branca (Hard Shadows) */
-      /* Camada 2: Sombra Laranja Suave (Soft Shadow) */
-      /* drop-shadow(x y blur color) */ drop-shadow(
-      1.5rem -0.3rem 3rem rgba(255, 166, 0, 0.4)
-    );
-  }
-</style>

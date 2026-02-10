@@ -1,0 +1,65 @@
+---
+interface Props {
+  stack: string[];
+}
+
+const { stack } = Astro.props;
+---
+
+<div class="badge-group">
+  <span class="label-trigger">
+    <strong><slot />:</strong>
+    {stack[0]}
+    {stack.length > 1 && `+${stack.length - 1}`}
+  </span>
+
+  <div class="badge-hover-item">
+    {stack.map((item) => <span class="item-pill">{item}</span>)}
+  </div>
+</div>
+
+<style>
+  .badge-group {
+    position: relative;
+    display: block;
+    cursor: help;
+    padding: 4px 0;
+  }
+
+  .label-trigger {
+    color: #cecece;
+    transition: color 0.2s;
+  }
+
+  .badge-group:hover .label-trigger {
+    color: #fff;
+  }
+
+  .badge-hover-item {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    padding: 8px;
+    border-radius: 6px;
+    z-index: 50;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-width: 200px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  }
+
+  .badge-group:hover .badge-hover-item {
+    display: flex;
+  }
+
+  .item-pill {
+    background: #333;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+</style>
